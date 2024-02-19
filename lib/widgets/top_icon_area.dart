@@ -21,9 +21,11 @@ class _TopIconAreState extends State<TopIconAre> {
       height: size.height * 0.25,
       color: ColorManager.primaryColorGold,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
         children: [
           Container(
+
             height: size.height,
             width: size.width * 0.4,
             margin: EdgeInsets.only(top: size.height * 0.15),
@@ -34,10 +36,11 @@ class _TopIconAreState extends State<TopIconAre> {
                     fontWeight: FontWeight.bold)),
           ),
           // Icon area.
-          Container(
+          SizedBox(
               width: size.width * 0.45,
               height: size.width * 0.45,
               child: Image.asset("assets/images/logo_en_white_conf_v3_no_bg.png"))
+
         ],
       ),
     );

@@ -16,4 +16,5 @@ class TextManager{
   static const String coffeeShopDescription =  "Indulge in our Sweet Symphony of Flavors! Take a break from the hustle and bustle and treat yourself to a slice of heaven. Our cookies and cakes are the perfect companions to your favorite brew, elevating your coffee experience to new heights. From classic chocolate chip cookies to decadent layered cakes, each bite is a delicious adventure waiting to be savored. So sit back, sip, and let the sweetness take over!";
   static const String weddingDescription = "Welcome to our Wedding Sweet Spot! Step into a world where love is the main ingredient and every bite tells a story. From elegant tiered cakes to delicate cookies, we're here to add a touch of sweetness to your special day. Explore our gallery of confectionery wonders, crafted with care and sprinkled with joy. Let's create sweet memories together that will last a lifetime!";
 
+
 }

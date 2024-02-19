@@ -45,6 +45,7 @@ class _WeddingScreenState extends State<WeddingScreen> {
                 CardInformation(cardTextContent: TextSpan(children: [
                   TextSpan(
                       text: TextManager.weddingDescription,
+
                       style: googleFontStyle.getCardStyle(
                           fontSize: size.width * 0.04, lineSpacing: size.width * 0.003))
                 ]),

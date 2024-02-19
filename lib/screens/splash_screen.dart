@@ -31,6 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 AnimatedPositioned(
                     duration: const Duration(milliseconds: 1600),
                     top: showAnimate ? size.height * 0.15 : size.height * 0.35,
+
                     left: size.width * 0.001,
                     child: Container(
                       width: size.width * 0.99,
@@ -38,9 +39,9 @@ class _SplashScreenState extends State<SplashScreen> {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           image: DecorationImage(
-                              image: Image.asset("assets/images/logo_en_gold_conf_v3_no_bg.png").image,
-                              fit: BoxFit.cover)),
-                    )),
+                              image: Image.asset("assets/images/logo_en_gold_conf_v3_no_bg.png").image,)))
+                ),
+
                 AnimatedPositioned(
                     duration: const Duration(milliseconds: 1600),
                     bottom: showAnimate? size.width * 0.0001: -85,
@@ -49,11 +50,9 @@ class _SplashScreenState extends State<SplashScreen> {
                       opacity: showAnimate? 1 : 0,
                       duration: const Duration(milliseconds: 1600),
                       child: Container(
-
                         width: size.width * 2,
-                        height: size.width ,
+                        height: size.width,
                         decoration: BoxDecoration(
-
                             borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
                                 image: Image.asset("assets/images/cakesplash.png").image,

@@ -1,8 +1,6 @@
 import 'package:baharacake/data_res/data.dart';
 import 'package:baharacake/resorce/color_manager.dart';
-
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class NavScreen extends StatefulWidget {
   const NavScreen({super.key});
@@ -28,9 +26,9 @@ class _NavScreenState extends State<NavScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.cake), label: "Birthday"),
           BottomNavigationBarItem(icon: Icon(Icons.coffee), label: "Coffee shop"),
-          BottomNavigationBarItem(icon: ImageIcon(AssetImage("assets/icons/engagement-ring.png")), label: "Wedding "),
+          BottomNavigationBarItem(icon: ImageIcon(AssetImage("assets/icons/rings.png")), label: "Wedding "),
         ],
-        onTap: (int index){
+        onTap: (int index) {
           setState(() {
             selectIndex = index;
           });
@@ -41,4 +39,3 @@ class _NavScreenState extends State<NavScreen> {
     );
   }
 }
-

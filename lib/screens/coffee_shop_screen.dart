@@ -44,7 +44,9 @@ class _CoffeeShopScreenState extends State<CoffeeShopScreen> {
                 ),
                 CardInformation(cardTextContent: TextSpan(children: [
                   TextSpan(
+
                       text: TextManager.coffeeShopDescription,
+
                       style: googleFontStyle.getCardStyle(
                           fontSize: size.width * 0.04, lineSpacing: size.width * 0.003))
                 ]),
