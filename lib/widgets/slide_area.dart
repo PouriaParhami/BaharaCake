@@ -1,6 +1,9 @@
 import 'package:BaharaConfectionary/resorce/color_manager.dart';
 import 'package:BaharaConfectionary/resorce/font_style_manager.dart';
+import 'package:BaharaConfectionary/resorce/text_manager.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SlideArea extends StatefulWidget {
@@ -37,58 +40,72 @@ class _SlideAreaState extends State<SlideArea> {
             ),
           ),
           //Slider area
+          // Slider area
           CarouselSlider(
             items: widget.urlImages.map((e) {
-              return Container(
-                width: size.width,
-                height: size.height,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
-                        image: Image.network(e, frameBuilder:
-                            (context, child, frame, wasSynchronouslyLoaded) {
-                          return child;
-                        }, loadingBuilder: (context, child, loadingProgress) {
-                          if (loadingProgress == null) {
-                            return child;
-                          } else {
-                            return Center(
+              return Builder(
+                builder: (BuildContext context) {
+                  return Container(
+                      width: size.width,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Stack(children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: CachedNetworkImage(
+                            imageUrl: e,
+                            placeholder: (context, url) => Center(
                               child: CircularProgressIndicator(),
-                            );
-                          }
-                        }).image,
-                        fit: BoxFit.cover)),
-                child: Container(
-                  margin: EdgeInsets.only(top: size.width * 0.55),
-                  padding: EdgeInsets.symmetric(
-                      vertical: size.width * 0.02,
-                      horizontal: size.width * 0.02),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Colors.black.withOpacity(0.6),
-                  ),
-                  child: RichText(
-                      maxLines: 4,
-                      overflow: TextOverflow.ellipsis,
-                      text: TextSpan(children: [
-                        TextSpan(
-                            text: "Bahara: ",
-                            style: fontManager.getHeadingStyle(
-                                fontSize: size.width * 0.035,
-                                color: Colors.white60,
-                                fontWeight: FontWeight.bold)),
-                        TextSpan(
-                            text:"Celebrate Life's Sweetest Moments with Us! Birthdays, Weddings, love, and of course, cake! Let us be a part of your special day.",
-                            style: fontManager.getHeadingStyle(
-                                fontSize: size.width * 0.035,
-                                color: Colors.white60,
-                                fontWeight: FontWeight.normal))
-                      ])),
-                ),
+                            ),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
+                            fit: BoxFit.cover,
+                            width: size.width,
+                            height: size.height,
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          child: Container(
+                            height: size.width * 0.24,
+                            // margin: EdgeInsets.only(top: size.width * 0.55),
+                            padding: EdgeInsets.symmetric(
+                                vertical: size.width * 0.02,
+                                horizontal: size.width * 0.02),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.black.withOpacity(0.6),
+                            ),
+                            child: RichText(
+                                maxLines: 4,
+                                overflow: TextOverflow.ellipsis,
+                                text: TextSpan(children: [
+                                  TextSpan(
+                                      text: "Bahara: \n",
+                                      style: fontManager.getHeadingStyle(
+                                          fontSize: size.width * 0.035,
+                                          color: Colors.white60,
+                                          fontWeight: FontWeight.bold)),
+                                  TextSpan(
+                                      text: TextManager.birthdayDescription,
+                                      style: fontManager.getHeadingStyle(
+                                          fontSize: size.width * 0.035,
+                                          color: Colors.white60,
+                                          fontWeight: FontWeight.normal))
+                                ])),
+                          ),
+                        )
+                      ]));
+                },
               );
             }).toList(),
             options: CarouselOptions(
-                height: size.height * 0.45, enlargeCenterPage: true),
+              height: size.height * 0.45,
+              enlargeCenterPage: true,
+            ),
           ),
         ],
       ),
