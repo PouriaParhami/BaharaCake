@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:BaharaConfectionary/data_res/data.dart';
 import 'package:BaharaConfectionary/screens/nav_screen.dart';
 import 'package:BaharaConfectionary/services/apiConst.dart';
 import 'package:BaharaConfectionary/services/extract_images.dart';
@@ -41,31 +42,43 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<Map<String, List<String>>> getWpData() async {
     WordPressApi wpApi = WordPressApi(ApiConst.mainUrl);
     var wpApiImages = await wpApi.getData();
+    Map<String, List<String>> pictureUrlMaps;
 
-    // get wedding, coffe shop and birthday html images
-    String birtDayUrls = wpApiImages[0]["content"]["rendered"];
-    String coffeeShopUrls = wpApiImages[1]["content"]["rendered"];
-    String weddingUrls = wpApiImages[2]["content"]["rendered"];
+    if (wpApiImages == false){
+      pictureUrlMaps = {
+        "birthday": cakes,
+        "coffeeShop": cakes,
+        "wedding": cakes,
+        "home": cakes
 
-    // Extract just images urls
-    List<String> birthDayImageUrls =
-    ExtractImages.extractImageUrls(birtDayUrls);
-    List<String> coffeeShopImageUrls =
-    ExtractImages.extractImageUrls(coffeeShopUrls);
-    List<String> weddingImageUrls =
-    ExtractImages.extractImageUrls(weddingUrls);
-    // get random images for home page
-    List<String> randomImageHomePage = [];
-    randomImageHomePage.addAll(getRandomURLs(birthDayImageUrls));
-    randomImageHomePage.addAll(getRandomURLs(coffeeShopImageUrls));
-    randomImageHomePage.addAll(getRandomURLs(weddingImageUrls));
+      };
+    }else{
+      // get wedding, coffee shop and birthday html images
+      String birtDayUrls = wpApiImages[0]["content"]["rendered"];
+      String coffeeShopUrls = wpApiImages[1]["content"]["rendered"];
+      String weddingUrls = wpApiImages[2]["content"]["rendered"];
 
-    Map<String, List<String>> pictureUrlMaps = {
-      "birthday": birthDayImageUrls,
-      "coffeeShop": coffeeShopImageUrls,
-      "wedding": weddingImageUrls,
-      "home": randomImageHomePage
-    };
+      // Extract just images urls
+      List<String> birthDayImageUrls =
+      ExtractImages.extractImageUrls(birtDayUrls);
+      List<String> coffeeShopImageUrls =
+      ExtractImages.extractImageUrls(coffeeShopUrls);
+      List<String> weddingImageUrls =
+      ExtractImages.extractImageUrls(weddingUrls);
+      // get random images for home page
+      List<String> randomImageHomePage = [];
+      randomImageHomePage.addAll(getRandomURLs(birthDayImageUrls));
+      randomImageHomePage.addAll(getRandomURLs(coffeeShopImageUrls));
+      randomImageHomePage.addAll(getRandomURLs(weddingImageUrls));
+
+      pictureUrlMaps = {
+        "birthday": birthDayImageUrls,
+        "coffeeShop": coffeeShopImageUrls,
+        "wedding": weddingImageUrls,
+        "home": randomImageHomePage
+      };
+    }
+
     return pictureUrlMaps;
   }
 

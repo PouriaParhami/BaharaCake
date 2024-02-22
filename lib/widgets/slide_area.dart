@@ -72,13 +72,13 @@ class _SlideAreaState extends State<SlideArea> {
                       overflow: TextOverflow.ellipsis,
                       text: TextSpan(children: [
                         TextSpan(
-                            text: "test1",
+                            text: "Bahara: ",
                             style: fontManager.getHeadingStyle(
                                 fontSize: size.width * 0.035,
                                 color: Colors.white60,
                                 fontWeight: FontWeight.bold)),
                         TextSpan(
-                            text: "test",
+                            text:"Celebrate Life's Sweetest Moments with Us! Birthdays, Weddings, love, and of course, cake! Let us be a part of your special day.",
                             style: fontManager.getHeadingStyle(
                                 fontSize: size.width * 0.035,
                                 color: Colors.white60,

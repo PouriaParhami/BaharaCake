@@ -15,6 +15,8 @@ class WordPressApi {
     } else {
       // If the server returns an error response, throw an exception.
       print(response.statusCode);
+      return false;
+
     }
   }
 }
