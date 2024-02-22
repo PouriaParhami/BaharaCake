@@ -1,5 +1,5 @@
 
-import 'package:baharacake/screens/splash_screen.dart';
+import 'package:BaharaConfectionary/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 

@@ -1,14 +1,15 @@
-import 'package:baharacake/resorce/color_manager.dart';
-import 'package:baharacake/resorce/font_style_manager.dart';
-import 'package:baharacake/resorce/text_manager.dart';
-import 'package:baharacake/widgets/card_information.dart';
-import 'package:baharacake/widgets/slide_area.dart';
-import 'package:baharacake/widgets/top_icon_area.dart';
+import 'package:BaharaConfectionary/resorce/color_manager.dart';
+import 'package:BaharaConfectionary/resorce/font_style_manager.dart';
+import 'package:BaharaConfectionary/resorce/text_manager.dart';
+import 'package:BaharaConfectionary/widgets/card_information.dart';
+import 'package:BaharaConfectionary/widgets/slide_area.dart';
+import 'package:BaharaConfectionary/widgets/top_icon_area.dart';
 import 'package:flutter/material.dart';
 
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final homePictures;
+  const HomeScreen({super.key, this.homePictures});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -26,20 +27,21 @@ class _HomeScreenState extends State<HomeScreen> {
           width: size.width,
           height: size.height,
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics:  BouncingScrollPhysics(),
             child: Column(
               children: [
                 SizedBox(
                   width: size.width,
                   height: size.height * 0.6,
-                  child: const Stack(
+                  child:  Stack(
                     children: [
                       TopIconAre(titleText: TextManager.welcomeTitle,),
                       Positioned(
                           bottom: 0,
                           left: 0,
                           right: 0,
-                          child: SlideArea(middleColor: ColorManager.primaryColorGreen,)),
+                          child: SlideArea(middleColor: ColorManager.primaryColorGreen,
+                          urlImages: widget.homePictures,)),
                     ],
                   ),
                 ),

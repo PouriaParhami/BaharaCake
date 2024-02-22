@@ -1,8 +1,8 @@
 
-import 'package:baharacake/screens/brith_day_screen.dart';
-import 'package:baharacake/screens/coffee_shop_screen.dart';
-import 'package:baharacake/screens/home_screen.dart';
-import 'package:baharacake/screens/wedding_screen.dart';
+import 'package:BaharaConfectionary/screens/brith_day_screen.dart';
+import 'package:BaharaConfectionary/screens/coffee_shop_screen.dart';
+import 'package:BaharaConfectionary/screens/home_screen.dart';
+import 'package:BaharaConfectionary/screens/wedding_screen.dart';
 
 List cakes = [
   {
@@ -32,10 +32,11 @@ List cakes = [
   },
 
 ];
+Map<String, List<String>>? imageUrlMap;
 
 List screens = [
-  const HomeScreen(),
-  const BirthdayScreen(),
-  const CoffeeShopScreen(),
-  const WeddingScreen(),
+   HomeScreen(homePictures: imageUrlMap?["home"],),
+   BirthdayScreen(birthdayPictures: imageUrlMap?["birthday"],),
+   CoffeeShopScreen(coffeeShopPictures: imageUrlMap?["coffeeShop"],),
+   WeddingScreen(weddingPictures: imageUrlMap?["wedding"],),
 ];

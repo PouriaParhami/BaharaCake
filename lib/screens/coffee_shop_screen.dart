@@ -1,13 +1,14 @@
-import 'package:baharacake/resorce/color_manager.dart';
-import 'package:baharacake/resorce/font_style_manager.dart';
-import 'package:baharacake/resorce/text_manager.dart';
-import 'package:baharacake/widgets/card_information.dart';
-import 'package:baharacake/widgets/slide_area.dart';
-import 'package:baharacake/widgets/top_icon_area.dart';
+import 'package:BaharaConfectionary/resorce/color_manager.dart';
+import 'package:BaharaConfectionary/resorce/font_style_manager.dart';
+import 'package:BaharaConfectionary/resorce/text_manager.dart';
+import 'package:BaharaConfectionary/widgets/card_information.dart';
+import 'package:BaharaConfectionary/widgets/slide_area.dart';
+import 'package:BaharaConfectionary/widgets/top_icon_area.dart';
 import 'package:flutter/material.dart';
 
 class CoffeeShopScreen extends StatefulWidget {
-  const CoffeeShopScreen({super.key});
+  final coffeeShopPictures;
+  const CoffeeShopScreen({super.key, this.coffeeShopPictures});
 
   @override
   State<CoffeeShopScreen> createState() => _CoffeeShopScreenState();
@@ -25,20 +26,21 @@ class _CoffeeShopScreenState extends State<CoffeeShopScreen> {
           width: size.width,
           height: size.height,
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics:  BouncingScrollPhysics(),
             child: Column(
               children: [
                 SizedBox(
                   width: size.width,
                   height: size.height * 0.6,
-                  child: const Stack(
+                  child:  Stack(
                     children: [
                       TopIconAre(titleText: TextManager.coffeeShopTitle,),
                       Positioned(
                           bottom: 0,
                           left: 0,
                           right: 0,
-                          child: SlideArea(middleColor: ColorManager.primaryColorGold,)),
+                          child: SlideArea(middleColor: ColorManager.primaryColorGold,
+                          urlImages: widget.coffeeShopPictures,)),
                     ],
                   ),
                 ),

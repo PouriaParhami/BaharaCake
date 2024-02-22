@@ -1,4 +1,9 @@
-import 'package:baharacake/screens/nav_screen.dart';
+import 'dart:math';
+
+import 'package:BaharaConfectionary/screens/nav_screen.dart';
+import 'package:BaharaConfectionary/services/apiConst.dart';
+import 'package:BaharaConfectionary/services/extract_images.dart';
+import 'package:BaharaConfectionary/services/word_press_api.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,6 +20,53 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     startAnimation();
     super.initState();
+  }
+
+  // Function to get 2 random URLs from a given list
+  List<String> getRandomURLs(List<String> list) {
+    List<String> randomURLs = [];
+    Random random = Random();
+    while (randomURLs.length < 2) {
+      int randomIndex = random.nextInt(list.length);
+      if (!randomURLs.contains(list[randomIndex])) {
+        randomURLs.add(list[randomIndex]);
+      }
+    }
+    return randomURLs;
+  }
+
+  // Add 2 random URLs from each list to the new list
+
+
+  Future<Map<String, List<String>>> getWpData() async {
+    WordPressApi wpApi = WordPressApi(ApiConst.mainUrl);
+    var wpApiImages = await wpApi.getData();
+
+    // get wedding, coffe shop and birthday html images
+    String birtDayUrls = wpApiImages[0]["content"]["rendered"];
+    String coffeeShopUrls = wpApiImages[1]["content"]["rendered"];
+    String weddingUrls = wpApiImages[2]["content"]["rendered"];
+
+    // Extract just images urls
+    List<String> birthDayImageUrls =
+    ExtractImages.extractImageUrls(birtDayUrls);
+    List<String> coffeeShopImageUrls =
+    ExtractImages.extractImageUrls(coffeeShopUrls);
+    List<String> weddingImageUrls =
+    ExtractImages.extractImageUrls(weddingUrls);
+    // get random images for home page
+    List<String> randomImageHomePage = [];
+    randomImageHomePage.addAll(getRandomURLs(birthDayImageUrls));
+    randomImageHomePage.addAll(getRandomURLs(coffeeShopImageUrls));
+    randomImageHomePage.addAll(getRandomURLs(weddingImageUrls));
+
+    Map<String, List<String>> pictureUrlMaps = {
+      "birthday": birthDayImageUrls,
+      "coffeeShop": coffeeShopImageUrls,
+      "wedding": weddingImageUrls,
+      "home": randomImageHomePage
+    };
+    return pictureUrlMaps;
   }
 
   @override
@@ -70,8 +122,13 @@ class _SplashScreenState extends State<SplashScreen> {
     setState(() {
       showAnimate = true;
     });
-    await Future.delayed(const Duration(seconds: 4));
-    Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (_) => const NavScreen()));
+    // get data from Wordpress API
+    Map<String, List<String>> pictures = await getWpData();
+    // white for 3 second
+    await Future.delayed(const Duration(seconds: 3));
+    Navigator.pushReplacement(context, MaterialPageRoute(
+        builder: (context) {
+           return NavScreen(pictureUrls: pictures,);}
+    ));
   }
 }

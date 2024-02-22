@@ -1,13 +1,15 @@
-import 'package:baharacake/resorce/color_manager.dart';
-import 'package:baharacake/resorce/font_style_manager.dart';
-import 'package:baharacake/resorce/text_manager.dart';
-import 'package:baharacake/widgets/card_information.dart';
-import 'package:baharacake/widgets/slide_area.dart';
-import 'package:baharacake/widgets/top_icon_area.dart';
+import 'package:BaharaConfectionary/resorce/color_manager.dart';
+import 'package:BaharaConfectionary/resorce/font_style_manager.dart';
+import 'package:BaharaConfectionary/resorce/text_manager.dart';
+import 'package:BaharaConfectionary/widgets/card_information.dart';
+import 'package:BaharaConfectionary/widgets/slide_area.dart';
+import 'package:BaharaConfectionary/widgets/top_icon_area.dart';
 import 'package:flutter/material.dart';
 
 class BirthdayScreen extends StatefulWidget {
-  const BirthdayScreen({super.key});
+  final birthdayPictures;
+
+  const BirthdayScreen({super.key, this.birthdayPictures});
 
   @override
   State<BirthdayScreen> createState() => _BirthdayScreenState();
@@ -15,8 +17,16 @@ class BirthdayScreen extends StatefulWidget {
 
 class _BirthdayScreenState extends State<BirthdayScreen> {
   @override
+  void initState() {
+    super.initState();
+
+  }
+
+
+  @override
   Widget build(BuildContext context) {
     FontStyleManager googleFontStyle = FontStyleManager();
+
     var size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
@@ -25,31 +35,39 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
           width: size.width,
           height: size.height,
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics:  BouncingScrollPhysics(),
             child: Column(
               children: [
                 SizedBox(
                   width: size.width,
                   height: size.height * 0.6,
-                  child: const Stack(
+                  child:  Stack(
                     children: [
-                      TopIconAre(titleText: TextManager.birthdayTitle,),
+                      TopIconAre(
+                        titleText: TextManager.birthdayTitle,
+                      ),
                       Positioned(
                           bottom: 0,
                           left: 0,
                           right: 0,
-                          child: SlideArea(middleColor: ColorManager.primaryColorGold,)),
+                          child: SlideArea(
+                            middleColor: ColorManager.primaryColorGold,
+                            urlImages: widget.birthdayPictures,
+                          )),
                     ],
                   ),
                 ),
-                CardInformation(cardTextContent: TextSpan(children: [
-                  TextSpan(
-                      text: TextManager.birthdayDescription,
-                      style: googleFontStyle.getCardStyle(
-                          fontSize: size.width * 0.04, lineSpacing: size.width * 0.003))
-                ]),
+                CardInformation(
+                  cardTextContent: TextSpan(children: [
+                    TextSpan(
+                        text: TextManager.birthdayDescription,
+                        style: googleFontStyle.getCardStyle(
+                            fontSize: size.width * 0.04,
+                            lineSpacing: size.width * 0.003))
+                  ]),
                   showMap: false,
-                  contactStyle: false,),
+                  contactStyle: false,
+                ),
               ],
             ),
           ),
