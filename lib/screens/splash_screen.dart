@@ -94,21 +94,24 @@ class _SplashScreenState extends State<SplashScreen> {
             child: Stack(
               children: [
                 AnimatedPositioned(
-                    duration: const Duration(milliseconds: 1600),
+                    duration: const Duration(milliseconds: 2600),
                     top: showAnimate ? size.height * 0.15 : size.height * 0.35,
-
                     left: size.width * 0.001,
-                    child: Container(
-                      width: size.width * 0.99,
-                      height: size.width * 0.99,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          image: DecorationImage(
-                              image: Image.asset("assets/images/logo_en_gold_conf_v3_no_bg.png").image,)))
+                    child: AnimatedOpacity(
+                      opacity: showAnimate? 1 : 0,
+                      duration: const Duration(milliseconds: 1600),
+                      child: Container(
+                        width: size.width * 0.99,
+                        height: size.width * 0.99,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            image: DecorationImage(
+                                image: Image.asset("assets/images/logo_en_gold_conf_v3_no_bg.png").image,))),
+                    )
                 ),
 
                 AnimatedPositioned(
-                    duration: const Duration(milliseconds: 1600),
+                    duration: const Duration(milliseconds: 2600),
                     bottom: showAnimate? size.width * 0.0001: -85,
                     left:  showAnimate? -250: -350,
                     child: AnimatedOpacity(
@@ -131,14 +134,15 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void startAnimation() async {
-    await Future.delayed(const Duration(milliseconds: 200));
+    await Future.delayed(const Duration(milliseconds: 300));
     setState(() {
       showAnimate = true;
     });
+    // white for 1 second
+    await Future.delayed(const Duration(seconds: 1));
     // get data from Wordpress API
     Map<String, List<String>> pictures = await getWpData();
-    // white for 3 second
-    await Future.delayed(const Duration(seconds: 3));
+
     Navigator.pushReplacement(context, MaterialPageRoute(
         builder: (context) {
            return NavScreen(pictureUrls: pictures,);}

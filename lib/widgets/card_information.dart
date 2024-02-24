@@ -27,9 +27,6 @@ class _CardInformationState extends State<CardInformation> {
           vertical: size.height * 0.02, horizontal: size.width * 0.04),
       margin: EdgeInsets.only(top: size.width * 0.04),
       width: size.width * 0.9,
-
-      // height: size.height * 0.30,
-
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: ColorManager.homePageDescriptionCardColor),
@@ -49,6 +46,7 @@ class _CardInformationState extends State<CardInformation> {
                   child: Container(
                     width: size.width * 0.9,
                     height: size.height * 0.23,
+                    margin: EdgeInsets.only(top: size.width * 0.02),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         image: DecorationImage(
@@ -62,8 +60,8 @@ class _CardInformationState extends State<CardInformation> {
               : const SizedBox.shrink(),
           widget.contactStyle
               ? Container(
+            margin: EdgeInsets.only(top: size.width * 0.04),
                   width: size.width * 0.9,
-
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -109,7 +107,6 @@ class _CardInformationState extends State<CardInformation> {
               : widget.showMap
                   ? Container(
                       width: size.width * 0.9,
-
                       margin: EdgeInsets.only(top: size.width * 0.01),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -119,7 +116,6 @@ class _CardInformationState extends State<CardInformation> {
                           color: Colors.black),
                     )
                   : const SizedBox.shrink(),
-
         ],
       ),
     );

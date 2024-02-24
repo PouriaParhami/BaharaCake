@@ -5,7 +5,7 @@ class TextManager{
   static const String coffeeShopTitle = "CoffeeShop";
   static const String birthdayTitle = "Birthday";
   static const String aboutTitle = "About";
-  static const String location = "Location";
+  static const String location = "Map";
   static const String contact = "Contact Us";
   static const String welcomeTitle = "Welcome To BaharaCake";
   static const String homePageShortAbout =
