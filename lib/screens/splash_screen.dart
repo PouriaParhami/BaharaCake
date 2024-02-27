@@ -139,9 +139,11 @@ class _SplashScreenState extends State<SplashScreen> {
       showAnimate = true;
     });
     // white for 1 second
-    await Future.delayed(const Duration(seconds: 1));
+
     // get data from Wordpress API
     Map<String, List<String>> pictures = await getWpData();
+    await Future.delayed(const Duration(seconds: 3));
+
 
     Navigator.pushReplacement(context, MaterialPageRoute(
         builder: (context) {
